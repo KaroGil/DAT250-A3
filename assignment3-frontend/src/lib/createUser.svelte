@@ -1,0 +1,16 @@
+<script lang="ts">
+
+</script>
+
+<main>
+  <h1>Create a user</h1>
+  <form>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+    <button type="submit">Create user</button>
+  </form>
+</main>
