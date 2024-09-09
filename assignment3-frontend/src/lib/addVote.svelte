@@ -1,6 +1,7 @@
 <script lang="ts">
   import { defaultFetch } from "../fetch/defaultFetch";
 
+  // Test data for testing
     const polls = [
     { id: 1, title: "Favorite Color", options: [{ id: 1, name: "Red" }, { id: 2, name: "Blue" }, { id: 3, name: "Green" }] },
     { id: 2, title: "Best Programming Language", options: [{ id: 4, name: "JavaScript" }, { id: 5, name: "Python" }, { id: 6, name: "Kotlin" }] }
@@ -10,13 +11,13 @@
   const optionSelect = document.getElementById("optionId") as HTMLSelectElement;
   if (pollSelect && optionSelect) {
 
-  // Populate poll dropdown
-  polls.forEach(poll => {
-    const option = document.createElement("option");
-    option.value = poll.id.toString();
-    option.textContent = poll.title;
-      pollSelect.appendChild(option);
-    });
+    // Poll dropdown
+    polls.forEach(poll => {
+        const option = document.createElement("option");
+        option.value = poll.id.toString();
+        option.textContent = poll.title;
+        pollSelect.appendChild(option);
+        });
     
     // Update options dropdown when a poll is selected
     pollSelect.addEventListener("change", function () {
