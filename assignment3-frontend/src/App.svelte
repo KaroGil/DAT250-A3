@@ -1,10 +1,10 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
   import AddVote from './lib/addVote.svelte';
   import AddPoll from './lib/addPoll.svelte';
   import CreateUser from './lib/createUser.svelte';
+  import SeeUsers from './lib/seeUsers.svelte';
+  import SeePolls from './lib/seePolls.svelte';
+  import SeeVotes from './lib/seeVotes.svelte';
 
   // Track the current view
   let currentView = 'createUser';
@@ -20,8 +20,11 @@
   <nav>
     <ul>
       <button on:click={() => showComponent('createUser')}>Create User</button>
+      <button on:click={() => showComponent('seeUsers')}>See Users</button>
       <button on:click={() => showComponent('addPoll')}>Add Poll</button>
-        <button on:click={() => showComponent('addVote')}>Add Vote</button>
+      <button on:click={() => showComponent('seePolls')}>See Poll</button>
+      <button on:click={() => showComponent('addVote')}>Add Vote</button>
+      <button on:click={() => showComponent('seeVotes')}>See Votes</button>
     </ul>
   </nav>
   
@@ -32,6 +35,12 @@
     <AddPoll />
   {:else if currentView === 'addVote'}
     <AddVote />
+  {:else if currentView === 'seeUsers'}
+    <SeeUsers />
+  {:else if currentView === 'seePolls'}
+    <SeePolls />
+  {:else if currentView === 'seeVotes'}
+    <SeeVotes />
   {/if}
 </main>
 

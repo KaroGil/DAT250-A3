@@ -1,21 +1,73 @@
 <script lang="ts">
+  import { defaultFetch } from "../fetch/defaultFetch";
 
+  let question = '';
+  let validUntil = '';
+  let isPublic = '';
+
+  // Options data
+  let optionCaption = '';
+  let presentationOrder = 1;
+  let options: { caption: string; presentationOrder: number }[] = [];
+
+  // Add an option to the options array
+  function addOption() {
+    options = [...options, { caption: optionCaption, presentationOrder }];
+    // Reset the fields for the next option
+    optionCaption = '';
+    presentationOrder = options.length + 1;
+  }
+
+
+  async function handleSubmit(event: Event) {
+    event.preventDefault();
+
+    const pollData = {
+      question,
+      validUntil: new Date(validUntil).toISOString(), // Convert to ISO string for Instant compatibility
+      options: options, // Convert comma-separated string to an array
+      isPublic
+    };
+
+    try {
+      defaultFetch("/polls", "POST", undefined, pollData);
+      question = '';
+      validUntil = '';
+      isPublic = '';
+      options = [];
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
+  }
 </script>
-
-<!-- TODO: add fetch to Post to backend  -->
 
 <main>
   <h1>Add a poll</h1>
-  <form>
+  <form on:submit|preventDefault={handleSubmit}>
     <label for="question">Question</label>
-    <input type="text" id="question" name="question" required>
+    <input type="text" id="question" name="question" bind:value={question} required>
     <label for="validUntil">Valid Until</label>
-    <input type="text" id="validUntil" name="validUntil" required>
-    <label for="options">Options</label>
-    <input type="text" id="options" name="options" required>
-    <label for="isPublic">Public poll (true / false)</label>
-    <input type="text" id="isPublic" name="isPublic" required>
-    <!-- Logic should also add publishedAt, and creatorUserId ( in backend probably )-->
+    <input type="datetime-local" id="validUntil" name="validUntil" bind:value={validUntil} required>
+    <!-- <label for="options">Options</label>
+    <input type="text" id="options" name="options" bind:value={options} required> -->
+    <label for="isPublic">Public poll</label>
+    <input type="checkbox" id="isPublic" name="isPublic" bind:value={isPublic} required>
+
+     <!-- Option inputs -->
+     <h2>Add Options</h2>
+     <label for="optionCaption">Option Caption</label>
+     <input type="text" id="optionCaption" name="optionCaption" bind:value={optionCaption}>
+ 
+     <button type="button" on:click={addOption}>Add Option</button>
+ 
+     <!-- List of added options -->
+     <ul>
+       {#each options as option}
+         <li>{option.presentationOrder}. {option.caption}</li>
+       {/each}
+     </ul>
+
     <button type="submit">Add poll</button>
   </form>
 </main>
