@@ -1,5 +1,7 @@
 <script lang="ts">
     import { defaultFetch } from "../fetch/defaultFetch";
+    import { userId } from "../store/userStore"
+
 
     interface Poll {
         id: number;
@@ -33,7 +35,8 @@
 
     async function vote(pollId: number, optionId: number){
         try {
-            await defaultFetch(`/vote`, "POST", undefined, { pollId: pollId, voteOptionId: optionId, votedBy: "584974bf-6118-4aba-bba6-e7aee41a5908"});
+            console.log($userId);
+            await defaultFetch(`/vote`, "POST", undefined, { pollId: pollId, voteOptionId: optionId, votedBy: $userId});
         } catch (error) {
             console.error('Error:', error);
             alert('An error occurred. Please try again.');

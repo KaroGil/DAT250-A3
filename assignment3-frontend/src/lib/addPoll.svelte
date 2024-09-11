@@ -1,6 +1,5 @@
 <script lang="ts">
   import { defaultFetch } from "../fetch/defaultFetch";
-
   let question = '';
   let validUntil = '';
   let isPublic = '';

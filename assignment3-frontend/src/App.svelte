@@ -5,6 +5,7 @@
   import SeeUsers from './lib/seeUsers.svelte';
   import SeePolls from './lib/seePolls.svelte';
   import SeeVotes from './lib/seeVotes.svelte';
+  import { isLoggedIn } from './store/userStore';
 
   // Track the current view
   let currentView = 'createUser';
@@ -21,10 +22,13 @@
     <ul>
       <button on:click={() => showComponent('createUser')}>Create User</button>
       <button on:click={() => showComponent('seeUsers')}>See Users</button>
-      <button on:click={() => showComponent('addPoll')}>Add Poll</button>
-      <button on:click={() => showComponent('seePolls')}>See Poll</button>
       <button on:click={() => showComponent('login')}>Login</button>
-      <button on:click={() => showComponent('seeVotes')}>See Votes</button>
+      {#if $isLoggedIn}
+        <button on:click={() => showComponent('addPoll')}>Add Poll</button>
+        <button on:click={() => showComponent('seePolls')}>See Poll</button>
+        <button on:click={() => showComponent('seeVotes')}>See Votes</button>
+      {/if}
+  
     </ul>
   </nav>
   
@@ -43,20 +47,3 @@
     <SeeVotes />
   {/if}
 </main>
-
-<style>
-  nav ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  nav ul li {
-    display: inline;
-    margin-right: 20px;
-  }
-
-  nav ul li a {
-    text-decoration: none;
-    cursor: pointer;
-  }
-</style>

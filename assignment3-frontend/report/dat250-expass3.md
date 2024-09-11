@@ -3,10 +3,14 @@ For this expass I choose to use Svelte, as I already had some expirience with it
 This application let´s you create a user, a poll and vote for createed polls.
 
 ## Technical problems that you encountered during the task
-I didn´t encounter any major problems during the task.
+I didn´t encounter any major problems during the task, possibly the hardest part of the expass was to handle login and the userId. But I managed to solve this with svelte store. 
 
 ## Link to your code for experiments 1-2 above
+Frontend code:
 https://github.com/KaroGil/DAT250-A3/tree/main/assignment3-frontend
+
+Backend code:
+https://github.com/KaroGil/DAT250/tree/assignment3
 
 ## Any pending issues with this assignment which you did not manage to solve
 There aren´t any pending issues to solve.
