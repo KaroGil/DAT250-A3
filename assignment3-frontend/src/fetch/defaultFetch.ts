@@ -11,4 +11,7 @@ export const defaultFetch = async (url: string, method: string, token?: string, 
   if (response.ok && method === "GET") {
     return response.json();
   }
+  else{
+    return response.json();
+  }
 };

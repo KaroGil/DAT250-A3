@@ -76,4 +76,7 @@
         align-items: center;
         justify-content: space-between;
     }
+    button {
+        margin: 0.5rem;
+    }
 </style>

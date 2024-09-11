@@ -32,3 +32,13 @@
     <button type="submit">Create user</button>
   </form>
 </main>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+</style>

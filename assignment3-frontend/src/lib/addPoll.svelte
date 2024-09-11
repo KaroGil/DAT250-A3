@@ -13,7 +13,6 @@
   // Add an option to the options array
   function addOption() {
     options = [...options, { caption: optionCaption, presentationOrder }];
-    // Reset the fields for the next option
     optionCaption = '';
     presentationOrder = options.length + 1;
   }
@@ -24,8 +23,8 @@
 
     const pollData = {
       question,
-      validUntil: new Date(validUntil).toISOString(), // Convert to ISO string for Instant compatibility
-      options: options, // Convert comma-separated string to an array
+      validUntil: new Date(validUntil).toISOString(),
+      options: options,
       isPublic
     };
 
@@ -49,8 +48,6 @@
     <input type="text" id="question" name="question" bind:value={question} required>
     <label for="validUntil">Valid Until</label>
     <input type="datetime-local" id="validUntil" name="validUntil" bind:value={validUntil} required>
-    <!-- <label for="options">Options</label>
-    <input type="text" id="options" name="options" bind:value={options} required> -->
     <label for="isPublic">Public poll</label>
     <input type="checkbox" id="isPublic" name="isPublic" bind:value={isPublic} required>
 
@@ -64,10 +61,22 @@
      <!-- List of added options -->
      <ul>
        {#each options as option}
-         <li>{option.presentationOrder}. {option.caption}</li>
+         <li>{option.caption}</li>
        {/each}
      </ul>
 
     <button type="submit">Add poll</button>
   </form>
 </main>
+
+<style>
+  ul {
+    list-style-type: none;
+  }
+  li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+  }
+</style>

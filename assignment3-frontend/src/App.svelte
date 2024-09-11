@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AddVote from './lib/addVote.svelte';
+  import Login from './lib/login.svelte';
   import AddPoll from './lib/addPoll.svelte';
   import CreateUser from './lib/createUser.svelte';
   import SeeUsers from './lib/seeUsers.svelte';
@@ -23,7 +23,7 @@
       <button on:click={() => showComponent('seeUsers')}>See Users</button>
       <button on:click={() => showComponent('addPoll')}>Add Poll</button>
       <button on:click={() => showComponent('seePolls')}>See Poll</button>
-      <button on:click={() => showComponent('addVote')}>Add Vote</button>
+      <button on:click={() => showComponent('login')}>Login</button>
       <button on:click={() => showComponent('seeVotes')}>See Votes</button>
     </ul>
   </nav>
@@ -33,8 +33,8 @@
     <CreateUser />
   {:else if currentView === 'addPoll'}
     <AddPoll />
-  {:else if currentView === 'addVote'}
-    <AddVote />
+  {:else if currentView === 'login'}
+    <Login /> 
   {:else if currentView === 'seeUsers'}
     <SeeUsers />
   {:else if currentView === 'seePolls'}
