@@ -26,8 +26,14 @@
     // Delete a poll
     async function deletePoll(id: number) {
         try {
-        await defaultFetch(`/polls/${id}`, "DELETE");
-        polls = polls.filter(poll => poll.id !== id);
+            if (confirm("Are you sure you want to delete this poll?")) {
+                if (polls.find(poll => poll.id === id)?.creatorUserId.toString() === $userId) {
+                    await defaultFetch(`/polls/${id}`, "DELETE");
+                    polls = polls.filter(poll => poll.id !== id);
+                } else {
+                    alert("You can only delete your own polls.");
+                }
+            }
         } catch (error) {
         console.error('Error:', error);
         alert('An error occurred. Please try again.');

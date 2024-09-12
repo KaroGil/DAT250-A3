@@ -13,4 +13,4 @@ Backend code:
 https://github.com/KaroGil/DAT250/tree/assignment3
 
 ## Any pending issues with this assignment which you did not manage to solve
-There are some issues with identification and actions based on identification. So a user can now delete another uses poll which is suboptimal but other than that the polls are connected to the users so it shouldnt be too hard to fix. As well as a user can see all polls, both public and private. I do not have a check for wether the user is invited to the private poll or not. A use can also vote multiple times on polls. So I as a user can vote for A 30 times if i please. 
+There are some issues with identification and actions based on identification. As well as a user can see all polls, both public and private. I do not have a check for wether the user is invited to the private poll or not. A use can also vote multiple times on polls. So I as a user can vote for A 30 times if i please. 
