@@ -20,20 +20,15 @@
   
       try {
         const response = await defaultFetch("/users/login", "POST", undefined, credentials);
-        if (response) {
         const data = response; // Use response data
         userId.set(data.id); // Store the user ID
-        isLoggedIn.set(true);
-        //userId = data.id; // Store the user ID
-        //isLoggedIn = true;
+        if (data.id) {
+          isLoggedIn.set(true);
+        }
         console.log(`Logged in as ${data.name}`);
-      } else {
-        console.log('Login failed. Please check your username and password.');
-      }
 
     } catch (error) {
         console.error('Error logging in:', error);
-        alert('An error occurred during login.');
       }
     }
   

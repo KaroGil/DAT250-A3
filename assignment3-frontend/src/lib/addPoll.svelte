@@ -1,8 +1,11 @@
 <script lang="ts">
   import { defaultFetch } from "../fetch/defaultFetch";
+  import { userId } from "../store/userStore";
+
   let question = '';
   let validUntil = '';
   let isPublic = '';
+  let creatorUserId = $userId;
 
   // Options data
   let optionCaption = '';
@@ -24,7 +27,8 @@
       question,
       validUntil: new Date(validUntil).toISOString(),
       options: options,
-      isPublic
+      isPublic,
+      creatorUserId,
     };
 
     try {
@@ -48,7 +52,7 @@
     <label for="validUntil">Valid Until</label>
     <input type="datetime-local" id="validUntil" name="validUntil" bind:value={validUntil} required>
     <label for="isPublic">Public poll</label>
-    <input type="checkbox" id="isPublic" name="isPublic" bind:value={isPublic} required>
+    <input type="checkbox" id="isPublic" name="isPublic" bind:value={isPublic}>
 
      <!-- Option inputs -->
      <h2>Add Options</h2>

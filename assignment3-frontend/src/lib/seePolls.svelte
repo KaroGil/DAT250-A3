@@ -8,6 +8,7 @@
         question: string;
         validUntil: string;
         options: { caption: string; presentationOrder: number, id: number }[];
+        creatorUserId: number;
     }
 
     let polls: Poll[] = [];
@@ -35,7 +36,6 @@
 
     async function vote(pollId: number, optionId: number){
         try {
-            console.log($userId);
             await defaultFetch(`/vote`, "POST", undefined, { pollId: pollId, voteOptionId: optionId, votedBy: $userId});
         } catch (error) {
             console.error('Error:', error);
@@ -54,6 +54,7 @@
             <div>
                 <h3>{poll.question}</h3>
                 <p><i>Valid until: [{poll.validUntil}]</i></p>
+                <p>Aurthor: {poll.creatorUserId}</p>
                 <ul>
                     {#each poll.options as option}
                     <button on:click={() => vote(poll.id, option.id)}>

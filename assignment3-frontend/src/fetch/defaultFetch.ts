@@ -7,11 +7,15 @@ export const defaultFetch = async (url: string, method: string, token?: string, 
     },
     body: JSON.stringify(body),
   });
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
 
-  if (response.ok && method === "GET") {
-    return response.json();
+  const contentType = response.headers.get("Content-Type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json(); 
+  } else {
+    return null;
   }
-  else{
-    return response.json();
-  }
+
 };
